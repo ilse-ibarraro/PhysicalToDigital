@@ -78,7 +78,7 @@ PhysicalToDigital addresses these challenges through four core capabilities:
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ilsevaleria/PhysicalToDigital.git
+git clone https://github.com/ilse-ibarraro/PhysicalToDigital.git
 cd PhysicalToDigital
 ```
 
