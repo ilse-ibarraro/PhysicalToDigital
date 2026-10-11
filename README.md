@@ -143,7 +143,7 @@ Open the local URL displayed in your terminal.
 
 ## 🧠 NVIDIA & Nebius Usage
 
-PhysicalToDigital integrates the `nvidia/Llama-3.1-Nemotron-70B-Instruct` model through Nebius Token Factory for AI-powered financial assistance and tool execution.
+PhysicalToDigital integrates the `nvidia/Nemotron-3_5-Lightning` model through Nebius Token Factory for AI-powered financial assistance and tool execution.
 
 The model allows users to interact with the application's financial education tools through natural-language requests.
 
