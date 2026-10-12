@@ -23,10 +23,10 @@ PhysicalToDigital addresses these challenges through four core capabilities:
 
 ## ⚡ Tech Stack & Nebius Token Factory Integration
 
-- **LLM Provider & Infrastructure:** Nebius Token Factory (`api.studio.nebius.com/v1`), leveraging the `nvidia/Llama-3.1-Nemotron-70B-Instruct` model for agent reasoning and tool execution.
+- **LLM Provider & Infrastructure:** Nebius Token Factory (`api.studio.nebius.com/v1`), leveraging the `nvidia/Nemotron-3_5-Lightning` model for low-latency agent reasoning and structured tool execution.
 - **Agent Orchestration:** Python 3.13 with LangChain and native function calling (`tool_calls`) for multi-step execution.
-- **Frontend & Visualizations:** Streamlit web interface with interactive Plotly graphs.
-- **Data Persistence & Processing:** Local JSON persistence (`compras.json`) and dynamic translation using `deep-translator` to standardize multilingual user inputs for English-language reporting.
+- **Frontend & Visualizations:** Streamlit web interface with interactive Plotly graphs and custom dark theme styling.
+- **Data Persistence & Processing:** Local JSON persistence (`compras.json`) and dynamic translation using `deep-translator` to deliver standardized English-language reporting across all interactive modules.
 
 ---
 
@@ -44,9 +44,9 @@ PhysicalToDigital addresses these challenges through four core capabilities:
 
 ### 1. 💸 Transfer & Investment Hub
 
-- Interactive compound interest simulator with customizable terms, annual rates, and visual growth projections.
+- Interactive compound interest simulator with customizable terms, annual rates, and visual Plotly growth projections.
 - SPEI transfer format validator that checks 18-digit CLABE and 16-digit debit card formatting, with estimated fee calculations.
-- Anti-phishing risk analysis module that identifies potential red flags in suspicious messages.
+- Anti-phishing risk analysis module that identifies potential red flags in suspicious messages, providing risk level evaluation (`HIGH`, `MEDIUM`, `LOW`) and actionable security recommendations in English.
 
 ### 2. 💬 Financial Mentor Chat (Agentic Co-Pilot)
 

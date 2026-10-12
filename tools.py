@@ -44,35 +44,35 @@ PRESUPUESTOS_MENSUALES = {
 @tool
 def analizar_posible_fraude(texto_mensaje: str) -> str:
     """
-    Analiza un mensaje de texto (SMS), correo electrónico o alerta bancaria sospechosa 
-    para detectar banderas rojas de fraude, phishing o ingeniería social (urgencia, enlaces externos, 
-    solicitud de claves o datos confidenciales) y ofrece recomendaciones de seguridad.
+    Analyzes a suspicious text message (SMS), email, or bank alert 
+    to detect red flags of fraud, phishing, or social engineering (urgency, external links, 
+    requests for confidential data) and provides security recommendations in English.
     """
     texto_lower = texto_mensaje.lower()
     banderas_rojas = []
     
     # Detección de patrones comunes de fraude y phishing
-    if any(palabra in texto_lower for palabra in ["urgente", "bloquead", "suspendid", "inmediato", "24 horas", "alerta de seguridad", "desactivad"]):
-        banderas_rojas.append("Urgencia o alarma artificial para generar pánico y obligar a actuar rápido.")
+    if any(palabra in texto_lower for palabra in ["urgente", "urgent", "bloquead", "locked", "suspendid", "inmediato", "immediate", "24 hours", "security alert"]):
+        banderas_rojas.append("Artificial urgency or panic inducement forcing hasty action.")
         
-    if any(palabra in texto_lower for palabra in ["nip", "cvv", "contraseña", "token", "clave", "código de verificación", "password"]):
-        banderas_rojas.append("Solicitud de claves confidenciales, NIP o códigos de verificación.")
+    if any(palabra in texto_lower for palabra in ["nip", "cvv", "contraseña", "password", "token", "clave", "verification code"]):
+        banderas_rojas.append("Request for confidential PIN, passwords, or verification codes.")
         
-    if any(palabra in texto_lower for palabra in ["http", "bit.ly", "tinyurl", "click", "enlace", "link", "ingresa a", "valida aquí"]):
-        banderas_rojas.append("Inclusión de enlaces web externos o acortados para redirigir a un sitio no oficial.")
+    if any(palabra in texto_lower for palabra in ["http", "bit.ly", "tinyurl", "click", "link", "verify here", "ingresa a"]):
+        banderas_rojas.append("Inclusion of external or shortened web links redirecting to unofficial sites.")
         
-    if any(palabra in texto_lower for palabra in ["ganador", "premio", "bono", "recompensa", "sorteo", "transferencia recibida"]):
-        banderas_rojas.append("Promesa de premios o incentivos monetarios no solicitados.")
+    if any(palabra in texto_lower for palabra in ["winner", "prize", "bonus", "reward", "sorteo", "transferencia recibida"]):
+        banderas_rojas.append("Unsolicited promise of monetary prizes or incentives.")
 
-    nivel_riesgo = "ALTO" if len(banderas_rojas) >= 2 else ("MEDIO" if len(banderas_rojas) == 1 else "BAJO")
+    nivel_riesgo = "HIGH" if len(banderas_rojas) >= 2 else ("MEDIUM" if len(banderas_rojas) == 1 else "LOW")
     
     analisis = {
         "risk_level": nivel_riesgo,
-        "detected_red_flags": banderas_rojas if banderas_rojas else ["No se detectaron patrones explícitos de fraude habitual."],
+        "detected_red_flags": banderas_rojas if banderas_rojas else ["No explicit fraud patterns detected."],
         "safety_recommendations": [
-            "Nunca hagas clic en enlaces recibidos por SMS o correo no solicitado.",
-            "Recuerda que ningún banco te pedirá NIP, claves dinámicas o token por mensaje o llamada.",
-            "Si tienes dudas, no utilices los enlaces del mensaje. Ingresa directamente desde la app oficial de tu banco o llama al número en el reverso de tu tarjeta."
+            "Never click on links received via unsolicited SMS messages or emails.",
+            "Remember that banks will never ask for your PIN, dynamic keys, or tokens via text message or phone call.",
+            "If in doubt, do not use the links provided in the message. Always log in directly through your official banking app or call the number on the back of your card."
         ]
     }
     return json.dumps(analisis, ensure_ascii=False, indent=2)

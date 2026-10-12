@@ -170,26 +170,26 @@ with tab_hub:
             raw_resultado = analizar_posible_fraude.invoke({"texto_mensaje": sms_input})
             resultado = json.loads(raw_resultado)
             
-            risk_level = resultado.get("risk_level", "DESCONOCIDO")
+            risk_level = resultado.get("risk_level", "UNKNOWN")
             red_flags = resultado.get("detected_red_flags", [])
             recommendations = resultado.get("safety_recommendations", [])
             
-            if risk_level == "ALTO":
-                st.error(f"🚨 **Riesgo de Fraude: {risk_level}**")
-            elif risk_level == "MEDIO":
-                st.warning(f"⚠️ **Riesgo de Fraude: {risk_level}**")
+            if risk_level == "HIGH":
+                st.error(f"🚨 **Fraud Risk: {risk_level}**")
+            elif risk_level == "MEDIUM":
+                st.warning(f"⚠️ **Fraud Risk: {risk_level}**")
             else:
-                st.success(f"✅ **Riesgo de Fraude: {risk_level}**")
+                st.success(f"✅ **Fraud Risk: {risk_level}**")
                 
-            st.markdown("### Banderas Rojas Detectadas:")
+            st.markdown("### Detected Red Flags:")
             for flag in red_flags:
                 st.write(f"- 🚩 {flag}")
                 
-            st.markdown("### Recomendaciones de Seguridad:")
+            st.markdown("### Safety Recommendations:")
             for rec in recommendations:
                 st.write(f"- 🔒 {rec}")
         else:
-            st.error("Por favor, pega el texto de un mensaje sospechoso para analizar.")
+            st.error("Please paste the text of a suspicious message to analyze.")
 
 # 2. TAB: FINANCIAL MENTOR CHAT
 with tab_mentor:
